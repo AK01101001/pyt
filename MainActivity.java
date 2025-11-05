@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.pytania.databinding.ActivityMainBinding;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void answear(int i) {
-        if (i==pytania.get(index).getOk())
+        if (i==Integer.parseInt(pytania.get(index).getOk()))
         {
             Toast.makeText(this, "dobrze", Toast.LENGTH_SHORT).show();
         }
@@ -51,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         Call<List<Pytanie>> call = RetrofitInstance.getApiInterface().getData();
+
         call.enqueue(new Callback<List<Pytanie>>() {
             @Override
             public void onResponse(Call<List<Pytanie>> call, Response<List<Pytanie>> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "cos", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
+                    Log.e("blad",response.message());
                 }
                 else{
                     pytania = response.body();

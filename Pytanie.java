@@ -1,5 +1,6 @@
 package com.example.pytania;
 
+
 import com.google.gson.annotations.SerializedName;
 
 public class Pytanie {
@@ -11,9 +12,11 @@ public class Pytanie {
     String odpowiedz2;
     @SerializedName("odp3")
     String odpowiedz3;
-    int ok;
+    @SerializedName("ok")
 
-    public Pytanie(String pytanie, String odpowiedz1, String odpowiedz2, String odpowiedz3, int ok) {
+    String ok;
+
+    public Pytanie(String pytanie, String odpowiedz1, String odpowiedz2, String odpowiedz3, String ok) {
         this.pytanie = pytanie;
         this.odpowiedz1 = odpowiedz1;
         this.odpowiedz2 = odpowiedz2;
@@ -53,11 +56,11 @@ public class Pytanie {
         this.odpowiedz3 = odpowiedz3;
     }
 
-    public int getOk() {
+    public String getOk() {
         return ok;
     }
 
-    public void setOk(int ok) {
+    public void setOk(String ok) {
         this.ok = ok;
     }
 }
